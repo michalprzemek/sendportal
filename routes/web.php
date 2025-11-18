@@ -113,4 +113,10 @@ Route::middleware(['auth', 'verified', RequireWorkspace::class])->group(
     }
 );
 
+Route::get('lp/{slug}', 'LandingPagesController@showPublic')->name('landing-pages.public');
+
+Route::post('f/{uuid}/subscribe', 'PublicFormController@subscribe')->name('forms.subscribe');
+
+Route::view('subscriptions/thankyou', 'subscriptions.thankyou')->name('sendportal.subscriptions.thankyou');
+
 Sendportal::publicWebRoutes();
