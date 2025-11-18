@@ -110,9 +110,6 @@ Route::middleware(['auth', 'verified', RequireWorkspace::class])->group(
         Sendportal::webRoutes();
 
         Route::resource('automations', 'AutomationsController');
-        Route::resource('landing-pages', 'LandingPagesController');
-        Route::get('landing-pages/{id}/editor', 'LandingPagesController@editor')->name('landing-pages.editor');
-        Route::resource('forms', 'SubscriptionFormsController');
     }
 );
 

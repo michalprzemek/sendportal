@@ -40,11 +40,9 @@ class SendAutomationEmails extends Command
                     ->where('automation_email_id', $email->id)
                     ->pluck('subscriber_id');
 
-                $threshold = Carbon::now()->subHours($email->delay_in_hours);
-
                 $subscribers = Subscriber::where('subscriber_list_id', $automation->subscriber_list_id)
                     ->whereNotIn('id', $sentSubscriberIds)
-                    ->where('created_at', '<=', $threshold)
+                    ->where(DB::raw("TIMESTAMPDIFF(HOUR, created_at, NOW())"), '>=', $email->delay_in_hours)
                     ->get();
 
                 foreach ($subscribers as $subscriber) {
