@@ -108,6 +108,8 @@ Route::namespace('Workspaces')->middleware(
 Route::middleware(['auth', 'verified', RequireWorkspace::class])->group(
     static function () {
         Sendportal::webRoutes();
+
+        Route::resource('automations', 'AutomationsController');
     }
 );
 
