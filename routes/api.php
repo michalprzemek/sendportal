@@ -12,6 +12,8 @@ Route::middleware([
 ])->group(function () {
     // Auth'd API routes (workspace-level auth!).
     Sendportal::apiRoutes();
+
+    Route::put('landing-pages/{id}', 'LandingPagesController@updateContent')->name('api.landing-pages.update');
 });
 
 // Non-auth'd API routes.
