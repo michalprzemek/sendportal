@@ -110,13 +110,11 @@ Route::middleware(['auth', 'verified', RequireWorkspace::class])->group(
         Sendportal::webRoutes();
 
         Route::resource('automations', 'AutomationsController');
+        Route::resource('landing-pages', 'LandingPagesController');
+        Route::get('landing-pages/{id}/editor', 'LandingPagesController@editor')->name('landing-pages.editor');
     }
 );
 
 Route::get('lp/{slug}', 'LandingPagesController@showPublic')->name('landing-pages.public');
-
-Route::post('f/{uuid}/subscribe', 'PublicFormController@subscribe')->name('forms.subscribe');
-
-Route::view('subscriptions/thankyou', 'subscriptions.thankyou')->name('sendportal.subscriptions.thankyou');
 
 Sendportal::publicWebRoutes();
